@@ -6,18 +6,33 @@
   <title>Aneesha's Dance Planner 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-
-    /* ── Reset & Tokens ── */
+    /* ── Reset & Design Tokens ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --pink: #EC4899; --violet: #8B5CF6; --purple: #7C3AED;
-      --sky: #0EA5E9; --indigo: #6366F1; --orange: #F97316;
-      --red: #EF4444; --blue: #3B82F6; --amber: #F59E0B;
-      --green: #10B981; --gray: #6B7280;
-      --bg: #F8F9FA; --card: #FFFFFF; --text: #111827;
-      --muted: #6B7280; --border: #E5E7EB;
+      /* Event category palette — Classical Ballet */
+      --pink:   #C47C6B;   /* dusty rose · Aneesha Solo Ballet */
+      --violet: #9B8EC4;   /* soft lavender · (reserved) */
+      --purple: #7B6DA8;   /* muted plum · Combine Class */
+      --sky:    #5BAEBE;   /* soft teal · Combine Contemp */
+      --indigo: #5C6BC0;   /* slate blue · Combine Ballet */
+      --orange: #C9A84C;   /* antique gold · Showcase */
+      --red:    #8B2635;   /* crimson · Competition */
+      --blue:   #1C2B4A;   /* midnight navy · Travel */
+      --amber:  #C9A84C;   /* antique gold · BDA Beijing */
+      --green:  #7C9A8A;   /* sage · City Tour */
+      --gray:   #8A7D70;   /* warm gray · Other */
+      /* Structural tokens */
+      --bg:        #FAF7F2;
+      --card:      #FFFFFF;
+      --champagne: #F5EDE0;
+      --text:      #1C2B4A;
+      --muted:     #8A7D70;
+      --border:    #E2D5C3;
+      --primary:   #8B2635;
+      --gold:      #C9A84C;
+      --navy:      #1C2B4A;
       --safe-b: env(safe-area-inset-bottom, 0px);
     }
     html { scroll-behavior: smooth; }
@@ -31,12 +46,12 @@
     /* ── SPA page sections ── */
     .page-section { display: none; }
 
-    /* ── Bottom Nav (unified 5 tabs) ── */
+    /* ── Bottom Nav ── */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0;
-      background: white; border-top: 1px solid var(--border);
+      background: var(--card); border-top: 1px solid var(--border);
       display: flex; padding-bottom: var(--safe-b);
-      z-index: 1000; box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+      z-index: 1000; box-shadow: 0 -2px 16px rgba(28,43,74,0.10);
     }
     .nav-a {
       flex: 1; display: flex; flex-direction: column;
@@ -45,51 +60,89 @@
       color: var(--muted); font-size: 9px; font-weight: 700;
       min-height: 56px; gap: 4px; text-transform: uppercase;
       letter-spacing: 0.7px; transition: color 0.2s;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
     }
-    .nav-a.active { color: #667eea; }
+    .nav-a.active { color: var(--primary); }
     .nav-icon { font-size: 20px; line-height: 1; }
 
-    /* ── Home page styles ── */
+    /* ── Home page ── */
     .hero {
-      background: linear-gradient(145deg, #764ba2 0%, #667eea 40%, #EC4899 100%);
+      background: linear-gradient(150deg, #1C2B4A 0%, #3D2240 45%, #8B2635 100%);
       padding: 52px 20px 40px; text-align: center; color: white;
       position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 30% 20%, rgba(201,168,76,0.12) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-icon { font-size: 52px; line-height: 1; margin-bottom: 14px; position: relative; }
-    .hero h1 { font-size: clamp(22px,6vw,32px); font-weight: 900; letter-spacing: -0.5px; position: relative; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-    .hero h1 .sub { display: block; font-size: 15px; font-weight: 500; opacity: 0.88; margin-top: 8px; letter-spacing: 0.5px; }
+    .hero h1 {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: clamp(24px,6vw,34px); font-weight: 700;
+      letter-spacing: 0.5px; position: relative;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .hero h1 .sub {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500; opacity: 0.80;
+      margin-top: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    }
     .stats-row { display: flex; gap: 10px; padding: 16px; overflow-x: auto; scrollbar-width: none; }
     .stats-row::-webkit-scrollbar { display: none; }
-    .stat-chip { flex: 1; min-width: 100px; background: white; border-radius: 14px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-    .stat-num { font-size: 30px; font-weight: 900; line-height: 1; background: linear-gradient(135deg,#667eea,#EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-chip {
+      flex: 1; min-width: 100px; background: var(--card);
+      border-radius: 14px; padding: 16px 12px; text-align: center;
+      box-shadow: 0 2px 8px rgba(28,43,74,0.08); border: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 34px; font-weight: 700; line-height: 1; color: var(--primary);
+    }
     .stat-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; margin-top: 5px; }
     .legend-row { display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto; scrollbar-width: none; }
     .legend-row::-webkit-scrollbar { display: none; }
-    .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; background: white; white-space: nowrap; font-size: 11px; font-weight: 600; border: 1.5px solid var(--border); flex-shrink: 0; color: var(--text); }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px;
+      border-radius: 20px; background: var(--card); white-space: nowrap;
+      font-size: 11px; font-weight: 600; border: 1.5px solid var(--border);
+      flex-shrink: 0; color: var(--text);
+    }
     .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
     .section { padding: 4px 16px 20px; }
-    .sec-title { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; padding-top: 20px; }
+    .sec-title {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; padding-top: 20px;
+    }
     .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
     @media (max-width: 380px) { .month-grid { grid-template-columns: repeat(2, 1fr); } }
-    .month-card { display: block; text-decoration: none; background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: transform 0.15s, box-shadow 0.15s; -webkit-tap-highlight-color: transparent; cursor: pointer; }
-    .month-card:active { transform: scale(0.96); box-shadow: 0 6px 20px rgba(0,0,0,0.14); }
+    .month-card {
+      display: block; text-decoration: none; background: var(--card);
+      border-radius: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(28,43,74,0.10);
+      border: 1px solid var(--border);
+      transition: transform 0.15s, box-shadow 0.15s;
+      -webkit-tap-highlight-color: transparent; cursor: pointer;
+    }
+    .month-card:active { transform: scale(0.96); box-shadow: 0 6px 20px rgba(28,43,74,0.16); }
     .mc-header { height: 86px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
-    .mc-may { background: linear-gradient(135deg,#EC4899 0%,#8B5CF6 100%); }
-    .mc-jun { background: linear-gradient(135deg,#F59E0B 0%,#10B981 100%); }
-    .mc-jul-aug { background: linear-gradient(135deg,#3B82F6 0%,#6366F1 100%); }
+    .mc-may    { background: linear-gradient(135deg, #8B2635 0%, #C47C6B 100%); }
+    .mc-jun    { background: linear-gradient(135deg, #C9A84C 0%, #1C2B4A 100%); }
+    .mc-jul-aug{ background: linear-gradient(135deg, #1C2B4A 0%, #5C6BC0 100%); }
     .mc-body { padding: 12px 14px 14px; }
-    .mc-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .mc-name {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 16px; font-weight: 700; color: var(--text);
+    }
     .mc-sub { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
     .events-scroll { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
     @media (max-width: 480px) { .events-scroll { grid-template-columns: repeat(2, 1fr); } }
-    .ev-card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); text-decoration: none; color: var(--text); display: block; -webkit-tap-highlight-color: transparent; transition: transform 0.15s; cursor: pointer; }
+    .ev-card {
+      background: var(--card); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(28,43,74,0.08); border: 1px solid var(--border);
+      text-decoration: none; color: var(--text); display: block;
+      -webkit-tap-highlight-color: transparent; transition: transform 0.15s; cursor: pointer;
+    }
     .ev-card:active { transform: scale(0.97); }
     .ev-stripe { height: 5px; }
     .ev-body { padding: 12px 14px 14px; }
@@ -98,37 +151,57 @@
     .ev-date { font-size: 11px; color: var(--muted); }
     .ev-venue { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
     .upcoming-list { display: flex; flex-direction: column; gap: 10px; }
-    .up-item { background: white; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid; }
+    .up-item {
+      background: var(--card); border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 1px 6px rgba(28,43,74,0.07); border-left: 4px solid;
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .up-date { display: flex; flex-direction: column; align-items: center; min-width: 40px; }
-    .up-day { font-size: 22px; font-weight: 900; line-height: 1; }
+    .up-day { font-family: 'Cormorant Garant', Georgia, serif; font-size: 26px; font-weight: 700; line-height: 1; }
     .up-mon { font-size: 9px; font-weight: 700; color: var(--muted); text-transform: uppercase; margin-top: 1px; }
     .up-info .up-title { font-size: 13px; font-weight: 700; line-height: 1.3; }
     .up-info .up-time { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
-    /* ── Events page styles ── */
-    .sticky-header { position: sticky; top: 0; z-index: 200; background: white; border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    /* ── Events page ── */
+    .sticky-header {
+      position: sticky; top: 0; z-index: 200; background: var(--card);
+      border-bottom: 1px solid var(--border); padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 2px 8px rgba(28,43,74,0.06);
+    }
     .back-btn { text-decoration: none; font-size: 14px; font-weight: 600; min-height: 44px; padding: 0 4px; display: flex; align-items: center; cursor: pointer; }
-    .back-btn-red { color: var(--red); }
-    .back-btn-blue { color: #667eea; }
-    .back-btn-amber { color: var(--amber); }
-    .header-title { font-size: 17px; font-weight: 800; }
-    .month-nav { display: flex; align-items: center; gap: 4px; text-decoration: none; font-size: 13px; font-weight: 600; color: #667eea; min-height: 44px; padding: 0 4px; cursor: pointer; }
-    .intro-banner { background: linear-gradient(145deg, #EF4444, #F97316); padding: 28px 20px; color: white; }
+    .back-btn-red   { color: var(--red); }
+    .back-btn-blue  { color: var(--primary); }
+    .back-btn-amber { color: var(--gold); }
+    .header-title {
+      font-family: 'Cormorant Garant', Georgia, serif; font-size: 19px; font-weight: 700;
+    }
+    .month-nav { display: flex; align-items: center; gap: 4px; text-decoration: none; font-size: 13px; font-weight: 600; color: var(--primary); min-height: 44px; padding: 0 4px; cursor: pointer; }
+    .intro-banner { background: linear-gradient(145deg, #8B2635, #C47C6B); padding: 28px 20px; color: white; }
     .intro-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; margin-bottom: 6px; }
-    .intro-title { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+    .intro-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
     .intro-sub { font-size: 13px; opacity: 0.85; }
-    .stats-strip { display: flex; gap: 16px; overflow-x: auto; padding: 14px 20px; background: white; border-bottom: 1px solid var(--border); scrollbar-width: none; }
+    .stats-strip { display: flex; gap: 16px; overflow-x: auto; padding: 14px 20px; background: var(--card); border-bottom: 1px solid var(--border); scrollbar-width: none; }
     .stats-strip::-webkit-scrollbar { display: none; }
     .stat-item { flex-shrink: 0; text-align: center; }
-    .stat-item .num { font-size: 22px; font-weight: 900; }
+    .stat-item .num { font-family: 'Cormorant Garant', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--primary); }
     .stat-item .lbl { font-size: 10px; color: var(--muted); font-weight: 600; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
     .content { padding: 16px 16px 8px; }
-    .event-card { background: white; border-radius: 18px; margin-bottom: 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .event-card {
+      background: var(--card); border-radius: 18px; margin-bottom: 20px;
+      box-shadow: 0 3px 16px rgba(28,43,74,0.10); overflow: hidden; border: 1px solid var(--border);
+    }
     .ec-header { padding: 20px 20px 16px; position: relative; overflow: hidden; }
     .ec-header::after { content: attr(data-emoji); position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 52px; opacity: 0.15; line-height: 1; }
     .ec-num { font-size: 11px; font-weight: 800; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
     .ec-badge { display: inline-block; padding: 4px 10px; border-radius: 8px; background: rgba(255,255,255,0.2); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: white; margin-bottom: 10px; backdrop-filter: blur(4px); }
-    .ec-title { font-size: clamp(17px,4.5vw,22px); font-weight: 900; color: white; line-height: 1.2; margin-bottom: 6px; }
+    .ec-title {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: clamp(19px,4.5vw,24px); font-weight: 700;
+      color: white; line-height: 1.2; margin-bottom: 6px;
+    }
     .ec-dates { display: inline-flex; align-items: center; background: rgba(255,255,255,0.15); border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 700; color: white; }
     .ec-body { padding: 18px 20px; }
     .ec-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
@@ -138,7 +211,7 @@
     .ec-row-label { font-size: 9px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; }
     .ec-row-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.5; }
     .ec-row-sub { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.5; }
-    .flight-mini { background: #F8F9FA; border-radius: 12px; padding: 12px; margin: 6px 0; }
+    .flight-mini { background: var(--bg); border-radius: 12px; padding: 12px; margin: 6px 0; }
     .flight-mini-label { font-size: 9px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px; }
     .flight-mini-route { display: flex; align-items: center; justify-content: space-between; }
     .fma { text-align: center; }
@@ -149,70 +222,85 @@
     .fmid .num { font-size: 11px; font-weight: 700; color: var(--blue); }
     .fmid .arrow { font-size: 16px; color: var(--muted); }
     .fmid .dur { font-size: 10px; color: var(--muted); }
-    .ref-tag { display: inline-block; background: #EFF6FF; color: var(--blue); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 5px; margin-right: 4px; margin-top: 4px; }
+    .ref-tag { display: inline-block; background: var(--champagne); color: var(--navy); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 5px; margin-right: 4px; margin-top: 4px; }
     .accordion-btn { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; padding: 12px 0; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--text); border-top: 1px solid var(--border); margin-top: 8px; -webkit-tap-highlight-color: transparent; }
     .accordion-btn .chevron { font-size: 12px; color: var(--muted); transition: transform 0.25s; }
     .accordion-btn.open .chevron { transform: rotate(180deg); }
     .accordion-content { display: none; }
     .accordion-content.open { display: block; }
-    .bda-link-card { background: linear-gradient(135deg,#FEF3C7,#FDE68A); border-radius: 14px; padding: 16px 18px; border-left: 5px solid var(--amber); text-decoration: none; color: var(--text); display: block; margin: 8px 0; cursor: pointer; }
-    .bda-link-card .label { font-size: 9px; font-weight: 800; color: #92400E; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
-    .bda-link-card .title { font-size: 14px; font-weight: 800; color: #78350F; margin-bottom: 4px; }
-    .bda-link-card .sub { font-size: 11px; color: #B45309; }
-    .bda-link-card .cta { display: inline-block; background: var(--amber); color: white; border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 700; margin-top: 10px; }
-    /* Events page: timeline (dark on white — base style) */
+    .bda-link-card { background: linear-gradient(135deg, #FAF0DC, #F5E4B8); border-radius: 14px; padding: 16px 18px; border-left: 5px solid var(--gold); text-decoration: none; color: var(--text); display: block; margin: 8px 0; cursor: pointer; }
+    .bda-link-card .label { font-size: 9px; font-weight: 800; color: #7A5A20; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px; }
+    .bda-link-card .title { font-size: 14px; font-weight: 800; color: #5C3D10; margin-bottom: 4px; }
+    .bda-link-card .sub { font-size: 11px; color: #8A6530; }
+    .bda-link-card .cta { display: inline-block; background: var(--gold); color: white; border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 700; margin-top: 10px; }
     .timeline { list-style: none; position: relative; padding-left: 22px; }
     .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
     .timeline li { position: relative; padding: 5px 0 5px 14px; font-size: 12px; line-height: 1.55; color: var(--text); }
-    .timeline li::before { content: ''; position: absolute; left: -15px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); border: 2px solid white; }
+    .timeline li::before { content: ''; position: absolute; left: -15px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); border: 2px solid var(--card); }
     .tl-time { font-weight: 800; margin-right: 6px; }
     .tl-note { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; font-style: italic; }
     .bring-row { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 6px; }
-    .bring-chip { background: #FFF7ED; border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 600; color: #92400E; border: 1px solid #FED7AA; }
+    .bring-chip { background: var(--champagne); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 600; color: #5C3D10; border: 1px solid var(--border); }
     .detail-label { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; margin-top: 10px; }
     .detail-label:first-child { margin-top: 0; }
     .detail-text { font-size: 12px; color: var(--text); line-height: 1.6; }
     .info-row { font-size: 12px; color: var(--muted); margin-top: 4px; }
     .info-row strong { color: var(--text); }
 
-    /* ── May page styles ── */
-    .mini-cal-wrap { background: white; padding: 16px; border-bottom: 1px solid var(--border); }
-    .mini-cal-month { font-size: 13px; font-weight: 700; color: var(--muted); text-align: center; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    /* ── May page ── */
+    .mini-cal-wrap { background: var(--card); padding: 16px; border-bottom: 1px solid var(--border); }
+    .mini-cal-month {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: 14px; font-weight: 600; color: var(--muted);
+      text-align: center; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;
+    }
     .mini-cal { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; }
     .cal-dow { text-align: center; font-size: 9px; font-weight: 700; color: var(--muted); padding: 4px 0; text-transform: uppercase; letter-spacing: 0.5px; }
     .cal-day { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 36px; min-width: 0; border-radius: 8px; cursor: pointer; padding: 3px 1px; -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
-    .cal-day:active { background: #F3F4F6; }
+    .cal-day:active { background: var(--champagne); }
     .cal-day.empty { cursor: default; }
-    .cal-day.today .cal-num { background: #667eea; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
+    .cal-day.today .cal-num { background: var(--primary); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
     .cal-day.has-event .cal-num { font-weight: 700; color: var(--text); }
-    .cal-day.showcase-day .cal-num { background: var(--orange); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
+    .cal-day.showcase-day .cal-num { background: var(--gold); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
     .cal-num { font-size: 12px; font-weight: 500; line-height: 1; }
     .cal-dots { display: flex; gap: 2px; justify-content: center; margin-top: 2px; min-height: 6px; flex-wrap: wrap; }
     .cal-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .day-section { margin-bottom: 24px; }
-    .day-header { font-size: 13px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; padding: 0 2px; }
-    .day-header .day-num { color: var(--text); font-size: 17px; }
-    .ev-block { background: white; border-radius: 12px; border-left: 5px solid; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .day-header { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; padding: 0 2px; }
+    .day-header .day-num {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      color: var(--text); font-size: 20px; font-weight: 700;
+    }
+    .ev-block {
+      background: var(--card); border-radius: 12px; border-left: 5px solid;
+      margin-bottom: 10px; box-shadow: 0 1px 6px rgba(28,43,74,0.07);
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
     .ev-main { display: flex; align-items: flex-start; justify-content: space-between; padding: 13px 14px; gap: 8px; min-height: 44px; }
     .ev-left { flex: 1; min-width: 0; }
     .ev-time { font-size: 11px; color: var(--muted); font-weight: 600; }
-    .venue-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #F3F4F6; color: var(--muted); }
+    .venue-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--champagne); color: var(--muted); }
     .ev-chevron { font-size: 12px; color: var(--muted); transition: transform 0.25s; flex-shrink: 0; margin-top: 2px; min-width: 20px; text-align: center; }
     .ev-block.open .ev-chevron { transform: rotate(180deg); }
     .ev-detail { display: none; padding: 0 14px 14px; border-top: 1px solid var(--border); }
     .ev-block.open .ev-detail { display: block; }
     .ev-detail-inner { padding-top: 12px; }
-    .showcase-banner { background: linear-gradient(135deg,#FF6B35,#F97316,#FBBF24); border-radius: 16px; padding: 20px; margin-bottom: 24px; color: white; position: relative; overflow: hidden; }
+    .showcase-banner {
+      background: linear-gradient(135deg, #8B2635 0%, #C9A84C 70%, #E8C5A0 100%);
+      border-radius: 16px; padding: 20px; margin-bottom: 24px;
+      color: white; position: relative; overflow: hidden;
+    }
     .showcase-banner::before { content: '🎭'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 48px; opacity: 0.25; }
     .showcase-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; margin-bottom: 6px; }
-    .showcase-title { font-size: 19px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+    .showcase-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 20px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
     .showcase-venue { font-size: 12px; opacity: 0.85; line-height: 1.5; margin-bottom: 10px; }
     .showcase-times { display: flex; gap: 10px; flex-wrap: wrap; }
     .showcase-time-chip { background: rgba(255,255,255,0.22); border-radius: 8px; padding: 6px 12px; font-size: 11px; font-weight: 700; backdrop-filter: blur(4px); }
     .showcase-expand-btn { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; background: rgba(255,255,255,0.2); border-radius: 10px; padding: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; color: white; width: 100%; -webkit-tap-highlight-color: transparent; }
     .showcase-details { display: none; margin-top: 14px; }
     .showcase-details.open { display: block; }
-    /* May/showcase timeline (white on gradient) */
     .showcase-banner .timeline { padding-left: 24px; }
     .showcase-banner .timeline::before { left: 8px; top: 6px; bottom: 6px; width: 2px; background: rgba(255,255,255,0.35); }
     .showcase-banner .timeline li { padding: 6px 0 6px 16px; color: white; }
@@ -227,10 +315,14 @@
     .dark-timeline .tl-note { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; font-style: italic; }
     .bring-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; }
     .bring-item { background: rgba(255,255,255,0.2); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 600; }
-    .travel-card { background: white; border-radius: 12px; border-left: 5px solid var(--blue); padding: 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .travel-card {
+      background: var(--card); border-radius: 12px; border-left: 5px solid var(--blue);
+      padding: 16px; margin-bottom: 10px; box-shadow: 0 1px 6px rgba(28,43,74,0.07);
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .travel-icon { font-size: 22px; margin-bottom: 6px; }
-    .travel-title { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
-    .travel-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: #F8F9FA; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+    .travel-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .travel-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; background: var(--bg); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
     .travel-airport { text-align: center; }
     .travel-airport .code { font-size: 20px; font-weight: 900; }
     .travel-airport .city { font-size: 9px; color: var(--muted); font-weight: 600; margin-top: 2px; }
@@ -239,36 +331,40 @@
     .travel-mid .arrow { font-size: 18px; color: var(--muted); }
     .travel-mid .duration { font-size: 10px; color: var(--muted); }
     .travel-time { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
-    .travel-ref { display: inline-block; background: #EFF6FF; color: var(--blue); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 4px; }
-    .comp-card { background: white; border-radius: 12px; border-left: 5px solid var(--red); padding: 16px; margin-bottom: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .travel-ref { display: inline-block; background: var(--champagne); color: var(--navy); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 4px; }
+    .comp-card {
+      background: var(--card); border-radius: 12px; border-left: 5px solid var(--red);
+      padding: 16px; margin-bottom: 10px; box-shadow: 0 1px 6px rgba(28,43,74,0.07);
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .comp-badge { display: inline-block; background: var(--red); color: white; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 8px; border-radius: 6px; margin-bottom: 8px; }
-    .comp-title { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .comp-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; margin-bottom: 4px; }
     .comp-venue { font-size: 11px; color: var(--muted); line-height: 1.5; }
     /* View Switcher */
-    .view-switcher { display: flex; gap: 8px; padding: 10px 16px; background: white; border-bottom: 1px solid var(--border); position: sticky; top: 57px; z-index: 100; }
+    .view-switcher { display: flex; gap: 8px; padding: 10px 16px; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 57px; z-index: 100; }
     .vsw-btn { flex: 1; padding: 8px 4px; border: 1.5px solid var(--border); border-radius: 10px; background: var(--bg); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all 0.2s; min-height: 44px; -webkit-tap-highlight-color: transparent; }
-    .vsw-btn.active { background: #667eea; color: white; border-color: #667eea; }
-    /* Calendar View (shared May/June) */
+    .vsw-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+    /* Calendar View */
     .outlook-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; background: var(--border); border-radius: 12px; overflow: hidden; }
-    .og-header { background: #667eea; color: white; text-align: center; padding: 6px 2px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-    .og-cell { background: white; min-height: 70px; padding: 4px 3px; position: relative; cursor: default; overflow: hidden; }
-    .og-cell.empty { background: #F9FAFB; }
-    .og-cell.today-cell { background: #EEF2FF; }
-    .og-cell.showcase-cell { background: #FFF7ED; }
+    .og-header { background: var(--navy); color: white; text-align: center; padding: 6px 2px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .og-cell { background: var(--card); min-height: 70px; padding: 4px 3px; position: relative; cursor: default; overflow: hidden; }
+    .og-cell.empty { background: var(--bg); }
+    .og-cell.today-cell { background: #FBF4ED; }
+    .og-cell.showcase-cell { background: #FDF7EC; }
     .og-date { font-size: 11px; font-weight: 700; color: var(--text); margin-bottom: 3px; line-height: 1; }
-    .og-cell.today-cell .og-date { background: #667eea; color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+    .og-cell.today-cell .og-date { background: var(--primary); color: white; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
     .og-pill { display: block; font-size: 9px; font-weight: 600; color: white; border-radius: 4px; padding: 2px 4px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; -webkit-tap-highlight-color: transparent; line-height: 1.3; }
     .og-more { font-size: 9px; color: var(--muted); font-weight: 600; padding: 1px 2px; cursor: pointer; }
-    .cal-popup { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .cal-popup-inner { background: white; border-radius: 16px; padding: 20px; max-width: 360px; width: 100%; max-height: 70vh; overflow-y: auto; position: relative; }
-    .cal-popup-close { position: absolute; top: 12px; right: 12px; border: none; background: #F3F4F6; border-radius: 50%; width: 30px; height: 30px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .cal-popup { position: fixed; inset: 0; background: rgba(28,43,74,0.55); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .cal-popup-inner { background: var(--card); border-radius: 16px; padding: 20px; max-width: 360px; width: 100%; max-height: 70vh; overflow-y: auto; position: relative; }
+    .cal-popup-close { position: absolute; top: 12px; right: 12px; border: none; background: var(--champagne); border-radius: 50%; width: 30px; height: 30px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text); }
     .popup-event-color { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 6px; vertical-align: middle; }
-    .popup-title { font-size: 15px; font-weight: 800; margin-bottom: 6px; line-height: 1.3; }
+    .popup-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
     .popup-time { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
     .popup-venue { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
     .popup-detail { font-size: 12px; color: var(--text); line-height: 1.6; }
-    .popup-day-header { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
-    .popup-event-item { border-left: 3px solid; padding: 8px 10px; border-radius: 0 8px 8px 0; background: #F9FAFB; margin-bottom: 8px; }
+    .popup-day-header { font-family: 'Cormorant Garant', Georgia, serif; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    .popup-event-item { border-left: 3px solid; padding: 8px 10px; border-radius: 0 8px 8px 0; background: var(--bg); margin-bottom: 8px; }
     .popup-event-item .pei-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
     .popup-event-item .pei-meta { font-size: 11px; color: var(--muted); }
     /* Gantt View */
@@ -279,95 +375,123 @@
     .gantt-row { display: flex; align-items: center; margin-bottom: 6px; min-height: 32px; }
     .gantt-label { width: 130px; min-width: 130px; font-size: 10px; font-weight: 700; color: var(--text); padding-right: 8px; line-height: 1.3; flex-shrink: 0; }
     .gantt-bars { display: flex; flex: 1; height: 22px; position: relative; }
-    .gantt-day-bg { min-width: 20px; width: 20px; height: 100%; border-right: 1px solid #F3F4F6; flex-shrink: 0; }
-    .gantt-day-bg.weekend { background: #FAFAFA; }
+    .gantt-day-bg { min-width: 20px; width: 20px; height: 100%; border-right: 1px solid var(--champagne); flex-shrink: 0; }
+    .gantt-day-bg.weekend { background: var(--bg); }
     .gantt-bar { position: absolute; height: 22px; border-radius: 6px; display: flex; align-items: center; padding: 0 6px; font-size: 9px; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; top: 0; }
     .gantt-section-header { font-size: 9px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; padding: 8px 0 4px 130px; }
 
     /* ── June extra styles ── */
-    .bda-card { background: linear-gradient(135deg,#FEF3C7,#FDE68A); border-radius: 14px; padding: 16px; margin-bottom: 10px; border-left: 5px solid var(--amber); box-shadow: 0 2px 8px rgba(245,158,11,0.15); cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    .bda-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #92400E; margin-bottom: 6px; }
-    .bda-title { font-size: 15px; font-weight: 800; color: #78350F; margin-bottom: 4px; }
-    .bda-uniform { display: inline-block; background: rgba(120,53,15,0.1); color: #78350F; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-bottom: 10px; }
+    .bda-card {
+      background: linear-gradient(135deg, #FAF0DC, #F5E4B8);
+      border-radius: 14px; padding: 16px; margin-bottom: 10px;
+      border-left: 5px solid var(--gold); box-shadow: 0 2px 8px rgba(201,168,76,0.15);
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    .bda-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #7A5A20; margin-bottom: 6px; }
+    .bda-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; color: #5C3D10; margin-bottom: 4px; }
+    .bda-uniform { display: inline-block; background: rgba(92,61,16,0.1); color: #5C3D10; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-bottom: 10px; }
     .bda-timeline { list-style: none; position: relative; padding-left: 20px; }
-    .bda-timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: rgba(120,53,15,0.25); }
-    .bda-timeline li { position: relative; padding: 5px 0 5px 14px; font-size: 11px; line-height: 1.5; color: #78350F; }
-    .bda-timeline li::before { content: ''; position: absolute; left: -14px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: #F59E0B; }
+    .bda-timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: rgba(92,61,16,0.25); }
+    .bda-timeline li { position: relative; padding: 5px 0 5px 14px; font-size: 11px; line-height: 1.5; color: #5C3D10; }
+    .bda-timeline li::before { content: ''; position: absolute; left: -14px; top: 10px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
     .bda-tl-time { font-weight: 800; margin-right: 4px; }
-    .bda-link { display: flex; align-items: center; justify-content: center; margin-top: 12px; background: #F59E0B; color: white; border-radius: 8px; padding: 9px; font-size: 12px; font-weight: 700; text-decoration: none; gap: 6px; cursor: pointer; }
-    .tour-card { background: linear-gradient(135deg,#D1FAE5,#A7F3D0); border-radius: 14px; padding: 16px; margin-bottom: 10px; border-left: 5px solid var(--green); box-shadow: 0 2px 8px rgba(16,185,129,0.15); }
-    .tour-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #065F46; margin-bottom: 6px; }
-    .tour-title { font-size: 15px; font-weight: 800; color: #064E3B; margin-bottom: 8px; }
+    .bda-link { display: flex; align-items: center; justify-content: center; margin-top: 12px; background: var(--gold); color: white; border-radius: 8px; padding: 9px; font-size: 12px; font-weight: 700; text-decoration: none; gap: 6px; cursor: pointer; }
+    .tour-card { background: linear-gradient(135deg, #F0F5F2, #D8EBE4); border-radius: 14px; padding: 16px; margin-bottom: 10px; border-left: 5px solid var(--green); box-shadow: 0 2px 8px rgba(124,154,138,0.15); }
+    .tour-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #2E5147; margin-bottom: 6px; }
+    .tour-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; color: #264038; margin-bottom: 8px; }
     .tour-timeline { list-style: none; position: relative; padding-left: 20px; }
-    .tour-timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: rgba(6,78,59,0.2); }
-    .tour-timeline li { position: relative; padding: 4px 0 4px 14px; font-size: 11px; line-height: 1.5; color: #064E3B; }
+    .tour-timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: rgba(38,64,56,0.2); }
+    .tour-timeline li { position: relative; padding: 4px 0 4px 14px; font-size: 11px; line-height: 1.5; color: #264038; }
     .tour-timeline li::before { content: ''; position: absolute; left: -14px; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
     .tour-tl-time { font-weight: 700; margin-right: 4px; }
-    .travel-note { background: #FEF9C3; border-radius: 8px; padding: 8px 10px; font-size: 11px; color: #713F12; font-weight: 600; margin-top: 8px; }
-    .reminder-card { background: #FFF7ED; border-radius: 12px; border-left: 5px solid var(--amber); padding: 14px 16px; margin-bottom: 10px; }
-    .reminder-text { font-size: 13px; font-weight: 700; color: #92400E; }
-    .reminder-sub { font-size: 11px; color: #B45309; margin-top: 4px; line-height: 1.5; }
+    .travel-note { background: var(--champagne); border-radius: 8px; padding: 8px 10px; font-size: 11px; color: #5C3D10; font-weight: 600; margin-top: 8px; border: 1px solid var(--border); }
+    .reminder-card {
+      background: var(--champagne); border-radius: 12px; border-left: 5px solid var(--gold);
+      padding: 14px 16px; margin-bottom: 10px; border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .reminder-text { font-size: 13px; font-weight: 700; color: #7A5A20; }
+    .reminder-sub { font-size: 11px; color: #8A6530; margin-top: 4px; line-height: 1.5; }
 
-    /* ── BDA page styles ── */
+    /* ── BDA page ── */
     #page-bda .hero {
-      background: linear-gradient(145deg,#B45309 0%,#D97706 40%,#F59E0B 100%);
+      background: linear-gradient(145deg, #5C3D10 0%, #B8860B 40%, #C9A84C 100%);
       padding: 44px 20px 32px;
     }
     #page-bda .hero::before { content: '\1F1E8\1F1F3'; font-size: 120px; opacity: 0.12; right: -10px; top: -10px; background: none; inset: unset; position: absolute; }
     .hero-back { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 600; margin-bottom: 16px; min-height: 44px; cursor: pointer; }
     .hero-flag { font-size: 40px; margin-bottom: 10px; }
     .hero-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.8; margin-bottom: 6px; }
-    .hero-title { font-size: clamp(20px,5.5vw,28px); font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+    .hero-title {
+      font-family: 'Cormorant Garant', Georgia, serif;
+      font-size: clamp(22px,5.5vw,30px); font-weight: 700; line-height: 1.2; margin-bottom: 8px;
+    }
     .hero-dates { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); border-radius: 8px; padding: 6px 12px; font-size: 13px; font-weight: 700; backdrop-filter: blur(4px); }
     .info-section { padding: 16px; }
-    .info-card { background: white; border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-left: 4px solid var(--amber); }
+    .info-card {
+      background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(28,43,74,0.07); border-left: 4px solid var(--gold);
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .info-card-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
-    .info-card-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .info-card-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
     .info-card-sub { font-size: 12px; color: var(--muted); line-height: 1.6; }
-    .info-alert { background: #FFF7ED; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; border-left: 4px solid var(--amber); }
-    .info-alert-title { font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 4px; }
-    .info-alert-text { font-size: 12px; color: #B45309; line-height: 1.6; }
-    .flight-card { background: white; border-radius: 14px; border-left: 5px solid var(--blue); padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .info-alert {
+      background: var(--champagne); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px;
+      border-left: 4px solid var(--gold); border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .info-alert-title { font-size: 13px; font-weight: 700; color: #7A5A20; margin-bottom: 4px; }
+    .info-alert-text { font-size: 12px; color: #8A6530; line-height: 1.6; }
+    .flight-card {
+      background: var(--card); border-radius: 14px; border-left: 5px solid var(--blue);
+      padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(28,43,74,0.07);
+      border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .flight-label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--blue); margin-bottom: 8px; }
-    .flight-route { display: flex; align-items: center; justify-content: space-between; background: #F8F9FA; border-radius: 10px; padding: 12px; margin-bottom: 10px; }
+    .flight-route { display: flex; align-items: center; justify-content: space-between; background: var(--bg); border-radius: 10px; padding: 12px; margin-bottom: 10px; }
     .flight-airport { text-align: center; }
     .flight-airport .code { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
     .flight-airport .city { font-size: 9px; color: var(--muted); font-weight: 600; margin-top: 2px; }
-    .flight-airport .time { font-size: 14px; font-weight: 800; margin-top: 5px; color: var(--text); }
+    .flight-airport .time { font-family: 'Cormorant Garant', Georgia, serif; font-size: 16px; font-weight: 700; margin-top: 5px; color: var(--text); }
     .flight-mid { text-align: center; flex: 1; }
     .flight-mid .num { font-size: 13px; font-weight: 700; color: var(--blue); }
     .flight-mid .arrow { font-size: 20px; color: var(--muted); margin: 2px 0; }
     .flight-mid .dur { font-size: 10px; color: var(--muted); }
     .flight-meta { font-size: 11px; color: var(--muted); }
-    .flight-ref { display: inline-block; background: #EFF6FF; color: var(--blue); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 4px; margin-top: 4px; }
-    .flight-warn { background: #FEF3C7; border-radius: 8px; padding: 8px 10px; margin-top: 10px; font-size: 11px; color: #92400E; font-weight: 600; line-height: 1.5; }
+    .flight-ref { display: inline-block; background: var(--champagne); color: var(--navy); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; margin-right: 4px; margin-top: 4px; }
+    .flight-warn { background: var(--champagne); border-radius: 8px; padding: 8px 10px; margin-top: 10px; font-size: 11px; color: #7A5A20; font-weight: 600; line-height: 1.5; border: 1px solid var(--border); }
     .uniform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .uniform-chip { background: white; border-radius: 12px; padding: 14px; border-top: 4px solid var(--amber); box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; }
+    .uniform-chip {
+      background: var(--card); border-radius: 12px; padding: 14px; border-top: 4px solid var(--gold);
+      box-shadow: 0 1px 6px rgba(28,43,74,0.06); text-align: center;
+      border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
     .uniform-day { font-size: 10px; font-weight: 800; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .uniform-date { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-    .uniform-name { font-size: 11px; font-weight: 600; color: #92400E; line-height: 1.3; }
-    .day-card { border-radius: 16px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); }
+    .uniform-name { font-size: 11px; font-weight: 600; color: #7A5A20; line-height: 1.3; }
+    .day-card { border-radius: 16px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 3px 16px rgba(28,43,74,0.10); border: 1px solid var(--border); }
     .day-card-header { padding: 16px 18px; color: white; display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-    .day-card-header.blue { background: linear-gradient(135deg,#2563EB,#3B82F6); }
-    .day-card-header.amber { background: linear-gradient(135deg,#B45309,#F59E0B); }
-    .day-card-header.green { background: linear-gradient(135deg,#059669,#10B981); }
+    .day-card-header.blue  { background: linear-gradient(135deg, #1C2B4A, #2E4A7A); }
+    .day-card-header.amber { background: linear-gradient(135deg, #5C3D10, #C9A84C); }
+    .day-card-header.green { background: linear-gradient(135deg, #2E5147, #7C9A8A); }
     .day-card-date { font-size: 11px; font-weight: 800; opacity: 0.8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.8px; }
-    .day-card-title { font-size: 16px; font-weight: 900; line-height: 1.2; }
+    .day-card-title { font-family: 'Cormorant Garant', Georgia, serif; font-size: 18px; font-weight: 700; line-height: 1.2; }
     .day-card-sub { font-size: 11px; opacity: 0.85; margin-top: 4px; }
     .day-card-badge { background: rgba(255,255,255,0.2); border-radius: 8px; padding: 6px 10px; font-size: 10px; font-weight: 700; white-space: nowrap; flex-shrink: 0; backdrop-filter: blur(4px); }
-    .day-card-body { background: white; padding: 16px 18px; }
+    .day-card-body { background: var(--card); padding: 16px 18px; }
     .itinerary-list { list-style: none; position: relative; padding-left: 24px; }
     .itinerary-list::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
     .itinerary-list li { position: relative; padding: 5px 0 5px 18px; font-size: 12px; line-height: 1.55; color: var(--text); }
-    .itinerary-list li::before { content: ''; position: absolute; left: -16px; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: 2px solid white; }
-    .itinerary-list li.highlight::before { background: var(--amber); }
+    .itinerary-list li::before { content: ''; position: absolute; left: -16px; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: 2px solid var(--card); }
+    .itinerary-list li.highlight::before { background: var(--gold); }
     .itinerary-list li.green-dot::before { background: var(--green); }
     .itinerary-list li.blue-dot::before { background: var(--blue); }
     .it-time { font-weight: 800; margin-right: 6px; color: var(--text); }
     .it-note { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; font-style: italic; }
     .section-break { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin: 12px 0 8px; padding-left: 24px; }
-    .note-box { background: #F0FDF4; border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: 11px; color: #065F46; line-height: 1.5; border: 1px solid #BBF7D0; }
-    .warn-box { background: #FFFBEB; border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: 11px; color: #92400E; line-height: 1.5; border: 1px solid #FDE68A; }
+    .note-box { background: #F0F5F2; border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: 11px; color: #264038; line-height: 1.5; border: 1px solid #C8DDD5; }
+    .warn-box { background: var(--champagne); border-radius: 8px; padding: 10px 12px; margin-top: 12px; font-size: 11px; color: #7A5A20; line-height: 1.5; border: 1px solid var(--border); }
 
   </style>
 </head>
@@ -375,7 +499,7 @@
 <div id="page-home" class="page-section">
 <!-- Hero -->
   <div class="hero">
-    <div class="hero-icon">💃</div>
+    <div class="hero-icon">🩰</div>
     <h1>Aneesha's Dance Planner
       <span class="sub">May – August 2026</span>
     </h1>
@@ -421,21 +545,21 @@
     <div class="sec-title">Month Overview</div>
     <div class="month-grid">
       <a onclick="showPage('may')" href="#" class="month-card">
-        <div class="mc-header mc-may">🌸</div>
+        <div class="mc-header mc-may">🩰</div>
         <div class="mc-body">
           <div class="mc-name">May 2026</div>
           <div class="mc-sub">Showcase · WBAC HK · Evolution</div>
         </div>
       </a>
       <a onclick="showPage('june')" href="#" class="month-card">
-        <div class="mc-header mc-jun">☀️</div>
+        <div class="mc-header mc-jun">🎵</div>
         <div class="mc-body">
           <div class="mc-name">June 2026</div>
           <div class="mc-sub">BDA Beijing · MIBC KL</div>
         </div>
       </a>
       <a onclick="showPage('events','ibgp'); return false;" href="#" class="month-card">
-        <div class="mc-header mc-jul-aug">🏅</div>
+        <div class="mc-header mc-jul-aug">🏆</div>
         <div class="mc-body">
           <div class="mc-name">Jul – Aug 2026</div>
           <div class="mc-sub">IBGP · IYDC · TBS RAD</div>
@@ -1102,115 +1226,115 @@
       <!-- 2 Sat -->
       <div class="og-cell">
         <div class="og-date">2</div>
-        <span class="og-pill" style="background:#6B7280" onclick="showMayCalPopup(MAY_EV[2],MAY_LBL[2])">&#128247; Photoshoot</span>
+        <span class="og-pill" style="background:#8A7D70" onclick="showMayCalPopup(MAY_EV[2],MAY_LBL[2])">&#128247; Photoshoot</span>
       </div>
       <!-- 3 Sun -->
       <div class="og-cell">
         <div class="og-date">3</div>
-        <span class="og-pill" style="background:#7C3AED" onclick="showMayCalPopup(MAY_EV[3],MAY_LBL[3])">Combine &#11088; 15:30</span>
+        <span class="og-pill" style="background:#7B6DA8" onclick="showMayCalPopup(MAY_EV[3],MAY_LBL[3])">Combine &#11088; 15:30</span>
       </div>
       <!-- 4 Mon --><div class="og-cell"><div class="og-date">4</div></div>
       <!-- 5 Tue --><div class="og-cell"><div class="og-date">5</div></div>
       <!-- 6 Wed -->
       <div class="og-cell">
         <div class="og-date">6</div>
-        <span class="og-pill" style="background:#6366F1" onclick="showMayCalPopup(MAY_EV[6],MAY_LBL[6])">Combine Ballet 14:45</span>
+        <span class="og-pill" style="background:#5C6BC0" onclick="showMayCalPopup(MAY_EV[6],MAY_LBL[6])">Combine Ballet 14:45</span>
       </div>
       <!-- 7 Thu -->
       <div class="og-cell">
         <div class="og-date">7</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showMayCalPopup(MAY_EV[7],MAY_LBL[7])">Aneesha Solo 14:30</span>
-        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#8B5CF6" onclick="showMayCalPopup(MAY_EV[7],MAY_LBL[7])">Shi Han Solo 16:00</span> -->
+        <span class="og-pill" style="background:#C47C6B" onclick="showMayCalPopup(MAY_EV[7],MAY_LBL[7])">Aneesha Solo 14:30</span>
+        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#9B8EC4" onclick="showMayCalPopup(MAY_EV[7],MAY_LBL[7])">Shi Han Solo 16:00</span> -->
       </div>
       <!-- 8 Fri -->
       <div class="og-cell">
         <div class="og-date">8</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showMayCalPopup(MAY_EV[8],MAY_LBL[8])">Aneesha Solo 15:00</span>
+        <span class="og-pill" style="background:#C47C6B" onclick="showMayCalPopup(MAY_EV[8],MAY_LBL[8])">Aneesha Solo 15:00</span>
       </div>
       <!-- 9 Sat --><div class="og-cell"><div class="og-date">9</div></div>
       <!-- 10 Sun SHOWCASE -->
       <div class="og-cell showcase-cell">
         <div class="og-date">10</div>
-        <span class="og-pill" style="background:#F97316;font-size:8px" onclick="showMayCalPopup(MAY_EV[10],MAY_LBL[10])">&#127917; SHOWCASE 4PM</span>
+        <span class="og-pill" style="background:#C9A84C;font-size:8px" onclick="showMayCalPopup(MAY_EV[10],MAY_LBL[10])">&#127917; SHOWCASE 4PM</span>
       </div>
       <!-- 11 Mon --><div class="og-cell"><div class="og-date">11</div></div>
       <!-- 12 Tue --><div class="og-cell"><div class="og-date">12</div></div>
       <!-- 13 Wed -->
       <div class="og-cell">
         <div class="og-date">13</div>
-        <span class="og-pill" style="background:#6366F1" onclick="showMayCalPopup(MAY_EV[13],MAY_LBL[13])">Combine Ballet 14:45</span>
+        <span class="og-pill" style="background:#5C6BC0" onclick="showMayCalPopup(MAY_EV[13],MAY_LBL[13])">Combine Ballet 14:45</span>
       </div>
       <!-- 14 Thu -->
       <div class="og-cell">
         <div class="og-date">14</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showMayCalPopup(MAY_EV[14],MAY_LBL[14])">Aneesha Solo 14:30</span>
-        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#8B5CF6" onclick="showMayCalPopup(MAY_EV[14],MAY_LBL[14])">Shi Han Solo 16:00</span> -->
+        <span class="og-pill" style="background:#C47C6B" onclick="showMayCalPopup(MAY_EV[14],MAY_LBL[14])">Aneesha Solo 14:30</span>
+        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#9B8EC4" onclick="showMayCalPopup(MAY_EV[14],MAY_LBL[14])">Shi Han Solo 16:00</span> -->
       </div>
       <!-- 15 Fri -->
       <div class="og-cell">
         <div class="og-date">15</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showMayCalPopup(MAY_EV[15],MAY_LBL[15])">Aneesha Solo 15:00</span>
+        <span class="og-pill" style="background:#C47C6B" onclick="showMayCalPopup(MAY_EV[15],MAY_LBL[15])">Aneesha Solo 15:00</span>
       </div>
       <!-- 16 Sat --><div class="og-cell"><div class="og-date">16</div></div>
       <!-- 17 Sun -->
       <div class="og-cell">
         <div class="og-date">17</div>
-        <span class="og-pill" style="background:#7C3AED" onclick="showMayCalPopup(MAY_EV[17],MAY_LBL[17])">Combine &#11088; 15:30</span>
+        <span class="og-pill" style="background:#7B6DA8" onclick="showMayCalPopup(MAY_EV[17],MAY_LBL[17])">Combine &#11088; 15:30</span>
       </div>
       <!-- 18 Mon --><div class="og-cell"><div class="og-date">18</div></div>
       <!-- 19 Tue --><div class="og-cell"><div class="og-date">19</div></div>
       <!-- 20 Wed -->
       <div class="og-cell">
         <div class="og-date">20</div>
-        <span class="og-pill" style="background:#6366F1" onclick="showMayCalPopup(MAY_EV[20],MAY_LBL[20])">Combine Ballet 14:45</span>
+        <span class="og-pill" style="background:#5C6BC0" onclick="showMayCalPopup(MAY_EV[20],MAY_LBL[20])">Combine Ballet 14:45</span>
       </div>
       <!-- 21 Thu -->
       <div class="og-cell">
         <div class="og-date">21</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showMayCalPopup(MAY_EV[21],MAY_LBL[21])">Aneesha Solo 14:30</span>
-        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#8B5CF6" onclick="showMayCalPopup(MAY_EV[21],MAY_LBL[21])">Shi Han Solo 16:00</span> -->
+        <span class="og-pill" style="background:#C47C6B" onclick="showMayCalPopup(MAY_EV[21],MAY_LBL[21])">Aneesha Solo 14:30</span>
+        <!-- SHI HAN HIDDEN: <span class="og-pill" style="background:#9B8EC4" onclick="showMayCalPopup(MAY_EV[21],MAY_LBL[21])">Shi Han Solo 16:00</span> -->
       </div>
       <!-- 22 Fri -->
       <div class="og-cell">
         <div class="og-date">22</div>
-        <span class="og-pill" style="background:#7C3AED" onclick="showMayCalPopup(MAY_EV[22],MAY_LBL[22])">Combine &#11088; 15:00</span>
+        <span class="og-pill" style="background:#7B6DA8" onclick="showMayCalPopup(MAY_EV[22],MAY_LBL[22])">Combine &#11088; 15:00</span>
       </div>
       <!-- 23 Sat --><div class="og-cell"><div class="og-date">23</div></div>
       <!-- 24 Sun -->
       <div class="og-cell">
         <div class="og-date">24</div>
-        <span class="og-pill" style="background:#3B82F6" onclick="showMayCalPopup(MAY_EV[24],MAY_LBL[24])">&#9992;&#65039; HK Depart 07:25</span>
+        <span class="og-pill" style="background:#1C2B4A" onclick="showMayCalPopup(MAY_EV[24],MAY_LBL[24])">&#9992;&#65039; HK Depart 07:25</span>
       </div>
       <!-- 25 Mon -->
       <div class="og-cell">
         <div class="og-date">25</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showMayCalPopup(MAY_EV[25],MAY_LBL[25])">&#127942; WBAC HK</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showMayCalPopup(MAY_EV[25],MAY_LBL[25])">&#127942; WBAC HK</span>
       </div>
       <!-- 26 Tue -->
       <div class="og-cell">
         <div class="og-date">26</div>
-        <span class="og-pill" style="background:#3B82F6" onclick="showMayCalPopup(MAY_EV[26],MAY_LBL[26])">&#9992;&#65039; Return 12:35</span>
+        <span class="og-pill" style="background:#1C2B4A" onclick="showMayCalPopup(MAY_EV[26],MAY_LBL[26])">&#9992;&#65039; Return 12:35</span>
       </div>
       <!-- 27 Wed --><div class="og-cell"><div class="og-date">27</div></div>
       <!-- 28 Thu -->
       <div class="og-cell">
         <div class="og-date">28</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showMayCalPopup(MAY_EV[28],MAY_LBL[28])">Evolution Day 1</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showMayCalPopup(MAY_EV[28],MAY_LBL[28])">Evolution Day 1</span>
       </div>
       <!-- 29 Fri -->
       <div class="og-cell">
         <div class="og-date">29</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showMayCalPopup(MAY_EV[29],MAY_LBL[29])">Evolution Day 2</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showMayCalPopup(MAY_EV[29],MAY_LBL[29])">Evolution Day 2</span>
       </div>
       <!-- 30 Sat -->
       <div class="og-cell">
         <div class="og-date">30</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showMayCalPopup(MAY_EV[30],MAY_LBL[30])">Evolution Day 3</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showMayCalPopup(MAY_EV[30],MAY_LBL[30])">Evolution Day 3</span>
       </div>
       <!-- 31 Sun -->
       <div class="og-cell">
         <div class="og-date">31</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showMayCalPopup(MAY_EV[31],MAY_LBL[31])">Evolution Day 4</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showMayCalPopup(MAY_EV[31],MAY_LBL[31])">Evolution Day 4</span>
       </div>
     </div>
     <!-- Popup overlay -->
@@ -1291,20 +1415,20 @@
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:120px;width:20px;" title="Day 7"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:140px;width:20px;" title="Day 8"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:260px;width:20px;" title="Day 14"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:280px;width:20px;" title="Day 15"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:400px;width:20px;" title="Day 21"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:420px;width:20px;" title="Day 22"></div>        </div>
+          <div class="gantt-bar" style="background:#C47C6B;left:120px;width:20px;" title="Day 7"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:140px;width:20px;" title="Day 8"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:260px;width:20px;" title="Day 14"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:280px;width:20px;" title="Day 15"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:400px;width:20px;" title="Day 21"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:420px;width:20px;" title="Day 22"></div>        </div>
       </div>
       <!-- SHI HAN HIDDEN:
       <div class="gantt-row">
         <div class="gantt-label">Shi Han Solo</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#8B5CF6;left:120px;width:20px;" title="Day 7"></div>
-          <div class="gantt-bar" style="background:#8B5CF6;left:260px;width:20px;" title="Day 14"></div>
-          <div class="gantt-bar" style="background:#8B5CF6;left:400px;width:20px;" title="Day 21"></div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#9B8EC4;left:120px;width:20px;" title="Day 7"></div>
+          <div class="gantt-bar" style="background:#9B8EC4;left:260px;width:20px;" title="Day 14"></div>
+          <div class="gantt-bar" style="background:#9B8EC4;left:400px;width:20px;" title="Day 21"></div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1341,9 +1465,9 @@
       <div class="gantt-row">
         <div class="gantt-label">Combine Class &#11088;</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#7C3AED;left:40px;width:20px;" title="Day 3"></div>
-          <div class="gantt-bar" style="background:#7C3AED;left:320px;width:20px;" title="Day 17"></div>
-          <div class="gantt-bar" style="background:#7C3AED;left:420px;width:20px;" title="Day 22"></div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#7B6DA8;left:40px;width:20px;" title="Day 3"></div>
+          <div class="gantt-bar" style="background:#7B6DA8;left:320px;width:20px;" title="Day 17"></div>
+          <div class="gantt-bar" style="background:#7B6DA8;left:420px;width:20px;" title="Day 22"></div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1379,9 +1503,9 @@
       <div class="gantt-row">
         <div class="gantt-label">Combine Ballet CBR</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#6366F1;left:100px;width:20px;" title="Day 6"></div>
-          <div class="gantt-bar" style="background:#6366F1;left:240px;width:20px;" title="Day 13"></div>
-          <div class="gantt-bar" style="background:#6366F1;left:380px;width:20px;" title="Day 20"></div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#5C6BC0;left:100px;width:20px;" title="Day 6"></div>
+          <div class="gantt-bar" style="background:#5C6BC0;left:240px;width:20px;" title="Day 13"></div>
+          <div class="gantt-bar" style="background:#5C6BC0;left:380px;width:20px;" title="Day 20"></div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1419,7 +1543,7 @@
       <div class="gantt-row">
         <div class="gantt-label">Photoshoot AMK</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#6B7280;left:20px;width:20px;">&#128247;</div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#8A7D70;left:20px;width:20px;">&#128247;</div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1455,7 +1579,7 @@
       <div class="gantt-row">
         <div class="gantt-label">May 10 Showcase</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#F97316;left:180px;width:20px;">&#127917;</div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#C9A84C;left:180px;width:20px;">&#127917;</div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1491,7 +1615,7 @@
       <div class="gantt-row">
         <div class="gantt-label">WBAC Competition</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#EF4444;left:460px;width:60px;">WBAC HK</div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#8B2635;left:460px;width:60px;">WBAC HK</div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -1527,7 +1651,7 @@
       <div class="gantt-row">
         <div class="gantt-label">Evolution Dance Comp</div>
         <div class="gantt-bars">
-          <div class="gantt-bar" style="background:#EF4444;left:540px;width:80px;">Evolution â†’Jun</div>          <div class="gantt-day-bg"></div>
+          <div class="gantt-bar" style="background:#8B2635;left:540px;width:80px;">Evolution â†’Jun</div>          <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
@@ -2035,129 +2159,129 @@
       <!-- 1 Mon -->
       <div class="og-cell">
         <div class="og-date">1</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[1],JUN_LBL[1])">Evolution Day 5</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[1],JUN_LBL[1])">Evolution Day 5</span>
       </div>
       <!-- 2 Tue -->
       <div class="og-cell">
         <div class="og-date">2</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[2],JUN_LBL[2])">Evolution Day 6</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[2],JUN_LBL[2])">Evolution Day 6</span>
       </div>
       <!-- 3 Wed -->
       <div class="og-cell">
         <div class="og-date">3</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[3],JUN_LBL[3])">Evolution Day 7</span>
-        <span class="og-pill" style="background:#EC4899" onclick="showJunCalPopup(JUN_EV[3],JUN_LBL[3])">Aneesha Solo 13:00</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[3],JUN_LBL[3])">Evolution Day 7</span>
+        <span class="og-pill" style="background:#C47C6B" onclick="showJunCalPopup(JUN_EV[3],JUN_LBL[3])">Aneesha Solo 13:00</span>
       </div>
       <!-- 4 Thu -->
       <div class="og-cell">
         <div class="og-date">4</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[4],JUN_LBL[4])">Evolution Day 8</span>
-        <span class="og-pill" style="background:#0EA5E9" onclick="showJunCalPopup(JUN_EV[4],JUN_LBL[4])">Combine Contemp 14:00</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[4],JUN_LBL[4])">Evolution Day 8</span>
+        <span class="og-pill" style="background:#5BAEBE" onclick="showJunCalPopup(JUN_EV[4],JUN_LBL[4])">Combine Contemp 14:00</span>
       </div>
       <!-- 5 Fri -->
       <div class="og-cell">
         <div class="og-date">5</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[5],JUN_LBL[5])">Evolution Day 9</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[5],JUN_LBL[5])">Evolution Day 9</span>
       </div>
       <!-- 6 Sat -->
       <div class="og-cell">
         <div class="og-date">6</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showJunCalPopup(JUN_EV[6],JUN_LBL[6])">Aneesha Solo 15:00</span>
+        <span class="og-pill" style="background:#C47C6B" onclick="showJunCalPopup(JUN_EV[6],JUN_LBL[6])">Aneesha Solo 15:00</span>
       </div>
       <!-- 7 Sun --><div class="og-cell"><div class="og-date">7</div></div>
       <!-- 8 Mon --><div class="og-cell"><div class="og-date">8</div></div>
       <!-- 9 Tue -->
       <div class="og-cell">
         <div class="og-date">9</div>
-        <span class="og-pill" style="background:#3B82F6" onclick="showJunCalPopup(JUN_EV[9],JUN_LBL[9])">&#9888;&#65039; Airport tonight</span>
+        <span class="og-pill" style="background:#1C2B4A" onclick="showJunCalPopup(JUN_EV[9],JUN_LBL[9])">&#9888;&#65039; Airport tonight</span>
       </div>
       <!-- 10 Wed -->
       <div class="og-cell">
         <div class="og-date">10</div>
-        <span class="og-pill" style="background:#3B82F6" onclick="showJunCalPopup(JUN_EV[10],JUN_LBL[10])">&#9992;&#65039; To Beijing 01:10</span>
+        <span class="og-pill" style="background:#1C2B4A" onclick="showJunCalPopup(JUN_EV[10],JUN_LBL[10])">&#9992;&#65039; To Beijing 01:10</span>
       </div>
       <!-- 11 Thu -->
       <div class="og-cell">
         <div class="og-date">11</div>
-        <span class="og-pill" style="background:#F59E0B" onclick="showJunCalPopup(JUN_EV[11],JUN_LBL[11])">BDA Day 1 &#127965;Black</span>
+        <span class="og-pill" style="background:#C9A84C" onclick="showJunCalPopup(JUN_EV[11],JUN_LBL[11])">BDA Day 1 &#127965;Black</span>
       </div>
       <!-- 12 Fri -->
       <div class="og-cell">
         <div class="og-date">12</div>
-        <span class="og-pill" style="background:#F59E0B" onclick="showJunCalPopup(JUN_EV[12],JUN_LBL[12])">BDA Day 2 &#127965;Comp</span>
+        <span class="og-pill" style="background:#C9A84C" onclick="showJunCalPopup(JUN_EV[12],JUN_LBL[12])">BDA Day 2 &#127965;Comp</span>
       </div>
       <!-- 13 Sat -->
       <div class="og-cell">
         <div class="og-date">13</div>
-        <span class="og-pill" style="background:#F59E0B" onclick="showJunCalPopup(JUN_EV[13],JUN_LBL[13])">BDA Day 3 &#127965;Black</span>
+        <span class="og-pill" style="background:#C9A84C" onclick="showJunCalPopup(JUN_EV[13],JUN_LBL[13])">BDA Day 3 &#127965;Black</span>
       </div>
       <!-- 14 Sun -->
       <div class="og-cell">
         <div class="og-date">14</div>
-        <span class="og-pill" style="background:#F59E0B" onclick="showJunCalPopup(JUN_EV[14],JUN_LBL[14])">BDA Day 4 + Cert</span>
+        <span class="og-pill" style="background:#C9A84C" onclick="showJunCalPopup(JUN_EV[14],JUN_LBL[14])">BDA Day 4 + Cert</span>
       </div>
       <!-- 15 Mon -->
       <div class="og-cell">
         <div class="og-date">15</div>
-        <span class="og-pill" style="background:#10B981" onclick="showJunCalPopup(JUN_EV[15],JUN_LBL[15])">City Tour Day 1</span>
+        <span class="og-pill" style="background:#7C9A8A" onclick="showJunCalPopup(JUN_EV[15],JUN_LBL[15])">City Tour Day 1</span>
       </div>
       <!-- 16 Tue -->
       <div class="og-cell">
         <div class="og-date">16</div>
-        <span class="og-pill" style="background:#10B981" onclick="showJunCalPopup(JUN_EV[16],JUN_LBL[16])">City Tour Day 2</span>
+        <span class="og-pill" style="background:#7C9A8A" onclick="showJunCalPopup(JUN_EV[16],JUN_LBL[16])">City Tour Day 2</span>
       </div>
       <!-- 17 Wed -->
       <div class="og-cell">
         <div class="og-date">17</div>
-        <span class="og-pill" style="background:#3B82F6" onclick="showJunCalPopup(JUN_EV[17],JUN_LBL[17])">&#9992;&#65039; Beijing&#8594;SIN 16:35</span>
+        <span class="og-pill" style="background:#1C2B4A" onclick="showJunCalPopup(JUN_EV[17],JUN_LBL[17])">&#9992;&#65039; Beijing&#8594;SIN 16:35</span>
       </div>
       <!-- 18 Thu -->
       <div class="og-cell">
         <div class="og-date">18</div>
-        <span class="og-pill" style="background:#0EA5E9" onclick="showJunCalPopup(JUN_EV[18],JUN_LBL[18])">Combine Contemp 14:00</span>
+        <span class="og-pill" style="background:#5BAEBE" onclick="showJunCalPopup(JUN_EV[18],JUN_LBL[18])">Combine Contemp 14:00</span>
       </div>
       <!-- 19 Fri -->
       <div class="og-cell">
         <div class="og-date">19</div>
-        <span class="og-pill" style="background:#6366F1" onclick="showJunCalPopup(JUN_EV[19],JUN_LBL[19])">Combine Ballet 14:00</span>
+        <span class="og-pill" style="background:#5C6BC0" onclick="showJunCalPopup(JUN_EV[19],JUN_LBL[19])">Combine Ballet 14:00</span>
       </div>
       <!-- 20 Sat -->
       <div class="og-cell">
         <div class="og-date">20</div>
-        <span class="og-pill" style="background:#EC4899" onclick="showJunCalPopup(JUN_EV[20],JUN_LBL[20])">Aneesha Solo 15:00</span>
+        <span class="og-pill" style="background:#C47C6B" onclick="showJunCalPopup(JUN_EV[20],JUN_LBL[20])">Aneesha Solo 15:00</span>
       </div>
       <!-- 21 Sun --><div class="og-cell"><div class="og-date">21</div></div>
       <!-- 22 Mon -->
       <div class="og-cell">
         <div class="og-date">22</div>
-        <span class="og-pill" style="background:#6366F1" onclick="showJunCalPopup(JUN_EV[22],JUN_LBL[22])">Combine 12:00</span>
-        <span class="og-pill" style="background:#0EA5E9" onclick="showJunCalPopup(JUN_EV[22],JUN_LBL[22])">Contemp 15:00</span>
+        <span class="og-pill" style="background:#5C6BC0" onclick="showJunCalPopup(JUN_EV[22],JUN_LBL[22])">Combine 12:00</span>
+        <span class="og-pill" style="background:#5BAEBE" onclick="showJunCalPopup(JUN_EV[22],JUN_LBL[22])">Contemp 15:00</span>
       </div>
       <!-- 23 Tue --><div class="og-cell"><div class="og-date">23</div></div>
       <!-- 24 Wed -->
       <div class="og-cell">
         <div class="og-date">24</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[24],JUN_LBL[24])">MIBC KL Day 1</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[24],JUN_LBL[24])">MIBC KL Day 1</span>
       </div>
       <!-- 25 Thu -->
       <div class="og-cell">
         <div class="og-date">25</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[25],JUN_LBL[25])">MIBC KL Day 2</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[25],JUN_LBL[25])">MIBC KL Day 2</span>
       </div>
       <!-- 26 Fri -->
       <div class="og-cell">
         <div class="og-date">26</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[26],JUN_LBL[26])">MIBC KL Day 3</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[26],JUN_LBL[26])">MIBC KL Day 3</span>
       </div>
       <!-- 27 Sat -->
       <div class="og-cell">
         <div class="og-date">27</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[27],JUN_LBL[27])">MIBC KL Day 4</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[27],JUN_LBL[27])">MIBC KL Day 4</span>
       </div>
       <!-- 28 Sun -->
       <div class="og-cell">
         <div class="og-date">28</div>
-        <span class="og-pill" style="background:#EF4444" onclick="showJunCalPopup(JUN_EV[28],JUN_LBL[28])">MIBC KL Day 5</span>
+        <span class="og-pill" style="background:#8B2635" onclick="showJunCalPopup(JUN_EV[28],JUN_LBL[28])">MIBC KL Day 5</span>
       </div>
       <!-- 29 Mon --><div class="og-cell"><div class="og-date">29</div></div>
       <!-- 30 Tue --><div class="og-cell"><div class="og-date">30</div></div>
@@ -2240,7 +2364,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#EF4444;left:0px;width:100px;">Evolution D5-9</div>        </div>
+          <div class="gantt-bar" style="background:#8B2635;left:0px;width:100px;">Evolution D5-9</div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">BDA Beijing â€” Course</div>
@@ -2274,7 +2398,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#F59E0B;left:200px;width:80px;">BDA Days 1-4</div>        </div>
+          <div class="gantt-bar" style="background:#C9A84C;left:200px;width:80px;">BDA Days 1-4</div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">City Tour Beijing</div>
@@ -2308,7 +2432,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#10B981;left:280px;width:40px;">City Tour</div>        </div>
+          <div class="gantt-bar" style="background:#7C9A8A;left:280px;width:40px;">City Tour</div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">MIBC KL Competition</div>
@@ -2342,7 +2466,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#EF4444;left:460px;width:100px;">MIBC KL</div>        </div>
+          <div class="gantt-bar" style="background:#8B2635;left:460px;width:100px;">MIBC KL</div>        </div>
       </div>
       <!-- CLASSES -->
       <div class="gantt-section-header">Classes</div>
@@ -2378,9 +2502,9 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:40px;width:20px;" title="Day 3"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:100px;width:20px;" title="Day 6"></div>
-          <div class="gantt-bar" style="background:#EC4899;left:380px;width:20px;" title="Day 20"></div>        </div>
+          <div class="gantt-bar" style="background:#C47C6B;left:40px;width:20px;" title="Day 3"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:100px;width:20px;" title="Day 6"></div>
+          <div class="gantt-bar" style="background:#C47C6B;left:380px;width:20px;" title="Day 20"></div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">Combine Contemp</div>
@@ -2414,9 +2538,9 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#0EA5E9;left:60px;width:20px;" title="Day 4"></div>
-          <div class="gantt-bar" style="background:#0EA5E9;left:340px;width:20px;" title="Day 18"></div>
-          <div class="gantt-bar" style="background:#0EA5E9;left:420px;width:20px;" title="Day 22"></div>        </div>
+          <div class="gantt-bar" style="background:#5BAEBE;left:60px;width:20px;" title="Day 4"></div>
+          <div class="gantt-bar" style="background:#5BAEBE;left:340px;width:20px;" title="Day 18"></div>
+          <div class="gantt-bar" style="background:#5BAEBE;left:420px;width:20px;" title="Day 22"></div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">Combine Ballet CBR</div>
@@ -2450,8 +2574,8 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#6366F1;left:360px;width:20px;" title="Day 19"></div>
-          <div class="gantt-bar" style="background:#6366F1;left:420px;width:20px;" title="Day 22"></div>        </div>
+          <div class="gantt-bar" style="background:#5C6BC0;left:360px;width:20px;" title="Day 19"></div>
+          <div class="gantt-bar" style="background:#5C6BC0;left:420px;width:20px;" title="Day 22"></div>        </div>
       </div>
       <!-- TRAVEL -->
       <div class="gantt-section-header">Travel</div>
@@ -2487,7 +2611,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#3B82F6;left:180px;width:20px;">&#9992;&#65039;</div>        </div>
+          <div class="gantt-bar" style="background:#1C2B4A;left:180px;width:20px;">&#9992;&#65039;</div>        </div>
       </div>
       <div class="gantt-row">
         <div class="gantt-label">&#9992;&#65039; PEK&#8594;SIN</div>
@@ -2521,7 +2645,7 @@
           <div class="gantt-day-bg weekend"></div>
           <div class="gantt-day-bg"></div>
           <div class="gantt-day-bg"></div>
-          <div class="gantt-bar" style="background:#3B82F6;left:320px;width:20px;">&#9992;&#65039;</div>        </div>
+          <div class="gantt-bar" style="background:#1C2B4A;left:320px;width:20px;">&#9992;&#65039;</div>        </div>
       </div>
     </div>
   </div>
@@ -2553,7 +2677,7 @@
     <!-- 1. SHOWCASE — 10 May                   -->
     <!-- ═══════════════════════════════════════ -->
     <div id="showcase" class="event-card">
-      <div class="ec-header" data-emoji="🎭" style="background: linear-gradient(135deg, #EA580C, #F97316, #FBBF24);">
+      <div class="ec-header" data-emoji="🎭" style="background: linear-gradient(135deg, #EA580C, #C9A84C, #FBBF24);">
         <div class="ec-num">Event 1 · Sunday 10 May 2026</div>
         <div class="ec-badge">Showcase &amp; Performance</div>
         <div class="ec-title">Contemporary Group Competition Showcase</div>
@@ -2654,7 +2778,7 @@
     <!-- 2. WBAC Hong Kong                      -->
     <!-- ═══════════════════════════════════════ -->
     <div id="wbac" class="event-card">
-      <div class="ec-header" data-emoji="🏆" style="background: linear-gradient(135deg, #B91C1C, #EF4444);">
+      <div class="ec-header" data-emoji="🏆" style="background: linear-gradient(135deg, #B91C1C, #8B2635);">
         <div class="ec-num">Event 2 · 24–26 May 2026</div>
         <div class="ec-badge">International Competition</div>
         <div class="ec-title">WBAC Hong Kong Competition</div>
@@ -2738,7 +2862,7 @@
     <!-- 3. Evolution Dance Competition         -->
     <!-- ═══════════════════════════════════════ -->
     <div id="evolution" class="event-card">
-      <div class="ec-header" data-emoji="🏅" style="background: linear-gradient(135deg, #991B1B, #DC2626);">
+      <div class="ec-header" data-emoji="🏆" style="background: linear-gradient(135deg, #991B1B, #DC2626);">
         <div class="ec-num">Event 3 · 28 May – 5 June 2026</div>
         <div class="ec-badge">Competition</div>
         <div class="ec-title">Evolution Dance Competition</div>
@@ -2821,7 +2945,7 @@
     <!-- 5. MIBC KL                             -->
     <!-- ═══════════════════════════════════════ -->
     <div id="mibc" class="event-card">
-      <div class="ec-header" data-emoji="🇲🇾" style="background: linear-gradient(135deg, #7C3AED, #8B5CF6);">
+      <div class="ec-header" data-emoji="🇲🇾" style="background: linear-gradient(135deg, #7B6DA8, #9B8EC4);">
         <div class="ec-num">Event 5 · 24–28 June 2026</div>
         <div class="ec-badge">International Competition</div>
         <div class="ec-title">MIBC Open Asia — Kuala Lumpur</div>
@@ -2854,7 +2978,7 @@
           <div class="ec-row-icon">🗓</div>
           <div class="ec-row-content">
             <div class="ec-row-label">In Calendar</div>
-            <div style="margin-top:4px;"><a onclick="showPage('june','jun-24'); return false;" href="#" style="background:#EDE9FE;color:#7C3AED;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;text-decoration:none;">View in June →</a></div>
+            <div style="margin-top:4px;"><a onclick="showPage('june','jun-24'); return false;" href="#" style="background:#EDE9FE;color:#7B6DA8;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;text-decoration:none;">View in June →</a></div>
           </div>
         </div>
       </div>
@@ -2864,7 +2988,7 @@
     <!-- 6. IBGP                                -->
     <!-- ═══════════════════════════════════════ -->
     <div id="ibgp" class="event-card">
-      <div class="ec-header" data-emoji="🥇" style="background: linear-gradient(135deg, #1D4ED8, #3B82F6);">
+      <div class="ec-header" data-emoji="🥇" style="background: linear-gradient(135deg, #1D4ED8, #1C2B4A);">
         <div class="ec-num">Event 6 · 24–26 July 2026</div>
         <div class="ec-badge">International Competition</div>
         <div class="ec-title">IBGP Singapore &amp; Grand Final</div>
@@ -2906,7 +3030,7 @@
     <!-- 7. IYDC                                -->
     <!-- ═══════════════════════════════════════ -->
     <div id="iydc" class="event-card">
-      <div class="ec-header" data-emoji="🏅" style="background: linear-gradient(135deg, #0E7490, #0EA5E9);">
+      <div class="ec-header" data-emoji="🏆" style="background: linear-gradient(135deg, #0E7490, #5BAEBE);">
         <div class="ec-num">Event 7 · 8–10 August 2026</div>
         <div class="ec-badge">International Competition</div>
         <div class="ec-title">IYDC — International Youth Dance Competition</div>
@@ -2942,7 +3066,7 @@
     <!-- 8. TBS RAD Showcase                    -->
     <!-- ═══════════════════════════════════════ -->
     <div id="tbs" class="event-card">
-      <div class="ec-header" data-emoji="🎭" style="background: linear-gradient(135deg, #C2410C, #F97316);">
+      <div class="ec-header" data-emoji="🎭" style="background: linear-gradient(135deg, #C2410C, #C9A84C);">
         <div class="ec-num">Event 8 · 15–16 August 2026</div>
         <div class="ec-badge">Performance Showcase</div>
         <div class="ec-title">TBS RAD Performance Showcase</div>
@@ -3194,7 +3318,7 @@
 
     <!-- 14 Jun — Day 4 + Certificate -->
     <div class="day-card">
-      <div class="day-card-header" style="background: linear-gradient(135deg, #92400E, #F59E0B 60%, #FBBF24);">
+      <div class="day-card-header" style="background: linear-gradient(135deg, #92400E, #C9A84C 60%, #FBBF24);">
         <div>
           <div class="day-card-date">Sun 14 June · Course Day 4</div>
           <div class="day-card-title">BDA — Final Day 🎖 Certificate</div>
@@ -3319,10 +3443,10 @@
     <span class="nav-icon">&#127968;</span><span>Home</span>
   </a>
   <a class="nav-a" data-page="may" onclick="showPage('may'); return false;" href="#">
-    <span class="nav-icon">&#127800;</span><span>May</span>
+    <span class="nav-icon">🩰</span><span>May</span>
   </a>
   <a class="nav-a" data-page="june" onclick="showPage('june'); return false;" href="#">
-    <span class="nav-icon">&#9728;&#65039;</span><span>June</span>
+    <span class="nav-icon">🎵</span><span>June</span>
   </a>
   <a class="nav-a" data-page="events" onclick="showPage('events'); return false;" href="#">
     <span class="nav-icon">&#127942;</span><span>Events</span>
@@ -3420,29 +3544,29 @@ function toggleEv(el) {
       content.innerHTML = html;
       popup.style.display = 'flex';
     }    var MAY_EV = {
-      2:  [{color:'#6B7280', title:'Photoshoot', time:'All day', venue:'AMK Studio', note:'Check timing & costume requirements with teacher'}],
-      3:  [{color:'#7C3AED', title:'Combine Class (Shi Han & Aneesha)', time:'15:30 â€“ 17:00', venue:'Venue TBC', note:'Special combine class'}],
-      6:  [{color:'#6366F1', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
-      7:  [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:'1h 30min'}
-           /* SHI HAN HIDDEN: ,{color:'#8B5CF6', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:'2 hours'} */],
-      8:  [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:'2 hours'}],
-      10: [{color:'#F97316', title:'SHOWCASE â€” Contemporary Group Competition', time:'4:00PM â€“ 8:15PM (Doors 3:30PM)', venue:'Kreta Ayer People\'s Theatre, 30A Kreta Ayer Rd', note:'Full costume & makeup from 12:45PM. Report 11:00AM AMK for 8U rehearsal.'}],
-      13: [{color:'#6366F1', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
-      14: [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:''}
-           /* SHI HAN HIDDEN: ,{color:'#8B5CF6', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:''} */],
-      15: [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:''}],
-      17: [{color:'#7C3AED', title:'Combine Class (Shi Han & Aneesha)', time:'15:30 â€“ 17:00', venue:'Venue TBC', note:''}],
-      20: [{color:'#6366F1', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
-      21: [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:''}
-           /* SHI HAN HIDDEN: ,{color:'#8B5CF6', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:''} */],
-      22: [{color:'#7C3AED', title:'Combine Class (Shi Han & Aneesha)', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:''}],
-      24: [{color:'#3B82F6', title:'Fly to Hong Kong â€” WBAC', time:'07:25 SQ874', venue:'Singapore T3 â†’ Hong Kong T1 (arr 11:20)', note:'Booking refs: FME478 / DRDYXE'}],
-      25: [{color:'#EF4444', title:'WBAC Hong Kong Competition', time:'Competition Day', venue:'Hong Kong', note:'World Ballet Art Competition'}],
-      26: [{color:'#3B82F6', title:'Return from Hong Kong', time:'12:35 SQ875', venue:'HKG T1 â†’ Singapore Changi (arr 16:30)', note:'Booking refs: FMHSS6 / DRDYXE'}],
-      28: [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 1 of 9', venue:'Kreta Ayer People\'s Theatre, Singapore', note:'Runs 28 May â€“ 5 Jun 2026'}],
-      29: [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 2 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
-      30: [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 3 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
-      31: [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 4 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Competition continues into June'}]
+      2:  [{color:'#8A7D70', title:'Photoshoot', time:'All day', venue:'AMK Studio', note:'Check timing & costume requirements with teacher'}],
+      3:  [{color:'#7B6DA8', title:'Combine Class (Shi Han & Aneesha)', time:'15:30 â€“ 17:00', venue:'Venue TBC', note:'Special combine class'}],
+      6:  [{color:'#5C6BC0', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
+      7:  [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:'1h 30min'}
+           /* SHI HAN HIDDEN: ,{color:'#9B8EC4', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:'2 hours'} */],
+      8:  [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:'2 hours'}],
+      10: [{color:'#C9A84C', title:'SHOWCASE â€” Contemporary Group Competition', time:'4:00PM â€“ 8:15PM (Doors 3:30PM)', venue:'Kreta Ayer People\'s Theatre, 30A Kreta Ayer Rd', note:'Full costume & makeup from 12:45PM. Report 11:00AM AMK for 8U rehearsal.'}],
+      13: [{color:'#5C6BC0', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
+      14: [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:''}
+           /* SHI HAN HIDDEN: ,{color:'#9B8EC4', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:''} */],
+      15: [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:''}],
+      17: [{color:'#7B6DA8', title:'Combine Class (Shi Han & Aneesha)', time:'15:30 â€“ 17:00', venue:'Venue TBC', note:''}],
+      20: [{color:'#5C6BC0', title:'Combine Ballet CBR', time:'14:45 â€“ 16:45', venue:'Clementi CBR', note:'2 hours'}],
+      21: [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'14:30 â€“ 16:00', venue:'AMK Studio', note:''}
+           /* SHI HAN HIDDEN: ,{color:'#9B8EC4', title:'Shi Han Solo', time:'16:00 â€“ 18:00', venue:'AMK Studio', note:''} */],
+      22: [{color:'#7B6DA8', title:'Combine Class (Shi Han & Aneesha)', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:''}],
+      24: [{color:'#1C2B4A', title:'Fly to Hong Kong â€” WBAC', time:'07:25 SQ874', venue:'Singapore T3 â†’ Hong Kong T1 (arr 11:20)', note:'Booking refs: FME478 / DRDYXE'}],
+      25: [{color:'#8B2635', title:'WBAC Hong Kong Competition', time:'Competition Day', venue:'Hong Kong', note:'World Ballet Art Competition'}],
+      26: [{color:'#1C2B4A', title:'Return from Hong Kong', time:'12:35 SQ875', venue:'HKG T1 â†’ Singapore Changi (arr 16:30)', note:'Booking refs: FMHSS6 / DRDYXE'}],
+      28: [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 1 of 9', venue:'Kreta Ayer People\'s Theatre, Singapore', note:'Runs 28 May â€“ 5 Jun 2026'}],
+      29: [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 2 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
+      30: [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 3 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
+      31: [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 4 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Competition continues into June'}]
     };
     var MAY_LBL = {
       2:'Sat 2 May', 3:'Sun 3 May', 6:'Wed 6 May', 7:'Thu 7 May',
@@ -3492,33 +3616,33 @@ function toggleEv(el) { el.classList.toggle('open'); }
       content.innerHTML = html;
       popup.style.display = 'flex';
     }    var JUN_EV = {
-      1:  [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 5 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Running 28 May â€“ 5 Jun 2026'}],
-      2:  [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 6 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
-      3:  [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 7 of 9', venue:'Kreta Ayer People\'s Theatre', note:''},
-           {color:'#EC4899', title:'Aneesha Solo Ballet', time:'13:00 â€“ 15:00', venue:'Clementi CBR', note:'2 hours'}],
-      4:  [{color:'#EF4444', title:'Evolution Dance Competition', time:'Day 8 of 9', venue:'Kreta Ayer People\'s Theatre', note:''},
-           {color:'#0EA5E9', title:'Combine Contemp â€” Shi Han & Aneesha', time:'14:00 â€“ 16:00', venue:'AMK Studio', note:'2 hours'}],
-      5:  [{color:'#EF4444', title:'Evolution Dance Competition â€” Final Day', time:'Day 9 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Competition ends today'}],
-      6:  [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'15:00 â€“ 16:30', venue:'Clementi CBR', note:'1h 30min'}],
-      9:  [{color:'#3B82F6', title:'Head to Airport Tonight', time:'Evening', venue:'Changi T3', note:'SQ800 departs at 01:10 on 10 Jun. Be at T3 by midnight.'}],
-      10: [{color:'#3B82F6', title:'Fly to Beijing â€” BDA Begins', time:'01:10 SQ800', venue:'Changi T3 â†’ Beijing T3 (arr 07:15)', note:'Booking ref: E2TELI. Hotel: Mercure Zhongguancun.'}],
-      11: [{color:'#F59E0B', title:'BDA Beijing â€” Course Day 1', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Black Leotard. Class observation + 3 lessons.'}],
-      12: [{color:'#F59E0B', title:'BDA Beijing â€” Course Day 2', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Complimentary Leotard. School tour + 3 lessons.'}],
-      13: [{color:'#F59E0B', title:'BDA Beijing â€” Course Day 3', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Black Leotard. 3 lessons.'}],
-      14: [{color:'#F59E0B', title:'BDA Beijing â€” Day 4 + Certificate', time:'08:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Complimentary Leotard. Certificate presentation 16:00.'}],
-      15: [{color:'#10B981', title:'City Tour Beijing â€” Day 1', time:'08:00 gather at hotel', venue:'Old Summer Palace + Temple of Heaven', note:'Lunch & dinner included'}],
-      16: [{color:'#10B981', title:'City Tour Beijing â€” Day 2', time:'07:00 gather at hotel', venue:'Forbidden City + Photography Palace', note:'Banquet dinner included'}],
-      17: [{color:'#3B82F6', title:'Return to Singapore', time:'16:35 SQ807', venue:'Beijing T3 â†’ Changi (arr 23:00)', note:'Booking ref: E2TELI'}],
-      18: [{color:'#0EA5E9', title:'Combine Contemp â€” Shi Han & Aneesha', time:'14:00 â€“ 16:00', venue:'AMK Studio', note:'2 hours'}],
-      19: [{color:'#6366F1', title:'Combine Ballet', time:'14:00 â€“ 17:00', venue:'Clementi CBR', note:'3 hours'}],
-      20: [{color:'#EC4899', title:'Aneesha Solo Ballet', time:'15:00 â€“ 16:30', venue:'Clementi CBR', note:'1h 30min'}],
-      22: [{color:'#6366F1', title:'Combine Ballet', time:'12:00 â€“ 15:00', venue:'Clementi CBR', note:'3 hours'},
-           {color:'#0EA5E9', title:'Combine Contemp â€” Shi Han & Aneesha', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:'2 hours'}],
-      24: [{color:'#EF4444', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 1', venue:'Petaling Jaya Performing Arts Centre, 1 Utama', note:'24â€“28 Jun 2026'}],
-      25: [{color:'#EF4444', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 2', venue:'Petaling Jaya Performing Arts Centre', note:''}],
-      26: [{color:'#EF4444', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 3', venue:'Petaling Jaya Performing Arts Centre', note:''}],
-      27: [{color:'#EF4444', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 4', venue:'Petaling Jaya Performing Arts Centre', note:''}],
-      28: [{color:'#EF4444', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 5', venue:'Petaling Jaya Performing Arts Centre', note:'Miami International Ballet Competition Open Asia'}]
+      1:  [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 5 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Running 28 May â€“ 5 Jun 2026'}],
+      2:  [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 6 of 9', venue:'Kreta Ayer People\'s Theatre', note:''}],
+      3:  [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 7 of 9', venue:'Kreta Ayer People\'s Theatre', note:''},
+           {color:'#C47C6B', title:'Aneesha Solo Ballet', time:'13:00 â€“ 15:00', venue:'Clementi CBR', note:'2 hours'}],
+      4:  [{color:'#8B2635', title:'Evolution Dance Competition', time:'Day 8 of 9', venue:'Kreta Ayer People\'s Theatre', note:''},
+           {color:'#5BAEBE', title:'Combine Contemp â€” Shi Han & Aneesha', time:'14:00 â€“ 16:00', venue:'AMK Studio', note:'2 hours'}],
+      5:  [{color:'#8B2635', title:'Evolution Dance Competition â€” Final Day', time:'Day 9 of 9', venue:'Kreta Ayer People\'s Theatre', note:'Competition ends today'}],
+      6:  [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'15:00 â€“ 16:30', venue:'Clementi CBR', note:'1h 30min'}],
+      9:  [{color:'#1C2B4A', title:'Head to Airport Tonight', time:'Evening', venue:'Changi T3', note:'SQ800 departs at 01:10 on 10 Jun. Be at T3 by midnight.'}],
+      10: [{color:'#1C2B4A', title:'Fly to Beijing â€” BDA Begins', time:'01:10 SQ800', venue:'Changi T3 â†’ Beijing T3 (arr 07:15)', note:'Booking ref: E2TELI. Hotel: Mercure Zhongguancun.'}],
+      11: [{color:'#C9A84C', title:'BDA Beijing â€” Course Day 1', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Black Leotard. Class observation + 3 lessons.'}],
+      12: [{color:'#C9A84C', title:'BDA Beijing â€” Course Day 2', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Complimentary Leotard. School tour + 3 lessons.'}],
+      13: [{color:'#C9A84C', title:'BDA Beijing â€” Course Day 3', time:'10:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Black Leotard. 3 lessons.'}],
+      14: [{color:'#C9A84C', title:'BDA Beijing â€” Day 4 + Certificate', time:'08:00 depart hotel', venue:'Beijing Dance Academy', note:'Uniform: Complimentary Leotard. Certificate presentation 16:00.'}],
+      15: [{color:'#7C9A8A', title:'City Tour Beijing â€” Day 1', time:'08:00 gather at hotel', venue:'Old Summer Palace + Temple of Heaven', note:'Lunch & dinner included'}],
+      16: [{color:'#7C9A8A', title:'City Tour Beijing â€” Day 2', time:'07:00 gather at hotel', venue:'Forbidden City + Photography Palace', note:'Banquet dinner included'}],
+      17: [{color:'#1C2B4A', title:'Return to Singapore', time:'16:35 SQ807', venue:'Beijing T3 â†’ Changi (arr 23:00)', note:'Booking ref: E2TELI'}],
+      18: [{color:'#5BAEBE', title:'Combine Contemp â€” Shi Han & Aneesha', time:'14:00 â€“ 16:00', venue:'AMK Studio', note:'2 hours'}],
+      19: [{color:'#5C6BC0', title:'Combine Ballet', time:'14:00 â€“ 17:00', venue:'Clementi CBR', note:'3 hours'}],
+      20: [{color:'#C47C6B', title:'Aneesha Solo Ballet', time:'15:00 â€“ 16:30', venue:'Clementi CBR', note:'1h 30min'}],
+      22: [{color:'#5C6BC0', title:'Combine Ballet', time:'12:00 â€“ 15:00', venue:'Clementi CBR', note:'3 hours'},
+           {color:'#5BAEBE', title:'Combine Contemp â€” Shi Han & Aneesha', time:'15:00 â€“ 17:00', venue:'Clementi CBR', note:'2 hours'}],
+      24: [{color:'#8B2635', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 1', venue:'Petaling Jaya Performing Arts Centre, 1 Utama', note:'24â€“28 Jun 2026'}],
+      25: [{color:'#8B2635', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 2', venue:'Petaling Jaya Performing Arts Centre', note:''}],
+      26: [{color:'#8B2635', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 3', venue:'Petaling Jaya Performing Arts Centre', note:''}],
+      27: [{color:'#8B2635', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 4', venue:'Petaling Jaya Performing Arts Centre', note:''}],
+      28: [{color:'#8B2635', title:'MIBC Open Asia â€” Kuala Lumpur', time:'Competition Day 5', venue:'Petaling Jaya Performing Arts Centre', note:'Miami International Ballet Competition Open Asia'}]
     };
     var JUN_LBL = {
       1:'Mon 1 Jun', 2:'Tue 2 Jun', 3:'Wed 3 Jun', 4:'Thu 4 Jun',
@@ -3536,14 +3660,14 @@ function toggleEv(el) { el.classList.toggle('open'); }
 
     // ── Home upcoming list JS ──
 const upcoming = [
-      { day: 2,  mon: 'MAY', title: 'Photoshoot at AMK', time: 'All day · AMK Studio', color: '#6B7280', link: 'may-2026.html#may-2' },
-      { day: 3,  mon: 'MAY', title: 'Shi Han & Aneesha Combine Class ⭐', time: '15:30–17:00', color: '#7C3AED', link: 'may-2026.html#may-3' },
-      { day: 6,  mon: 'MAY', title: 'Combine Ballet CBR', time: '14:45–16:45 · Clementi CBR', color: '#6366F1', link: 'may-2026.html#may-6' },
-      { day: 7,  mon: 'MAY', title: 'Aneesha Solo Ballet', time: '14:30–16:00 · AMK Studio', color: '#EC4899', link: 'may-2026.html#may-7' },
-      { day: 8,  mon: 'MAY', title: 'Aneesha Solo Ballet', time: '15:00–17:00 · Clementi CBR', color: '#EC4899', link: 'may-2026.html#may-8' },
-      { day: 10, mon: 'MAY', title: '🎭 Contemporary Group Showcase', time: '4:00PM–8:15PM · Kreta Ayer', color: '#F97316', link: 'may-2026.html#may-10' },
-      { day: 24, mon: 'MAY', title: '✈️ WBAC: Fly to Hong Kong (SQ874)', time: 'Departs 07:25', color: '#3B82F6', link: 'may-2026.html#may-24' },
-      { day: 25, mon: 'MAY', title: '🏆 WBAC Hong Kong Competition', time: 'All day · Hong Kong', color: '#EF4444', link: 'may-2026.html#may-25' },
+      { day: 2,  mon: 'MAY', title: 'Photoshoot at AMK', time: 'All day · AMK Studio', color: '#8A7D70', link: 'may-2026.html#may-2' },
+      { day: 3,  mon: 'MAY', title: 'Shi Han & Aneesha Combine Class ⭐', time: '15:30–17:00', color: '#7B6DA8', link: 'may-2026.html#may-3' },
+      { day: 6,  mon: 'MAY', title: 'Combine Ballet CBR', time: '14:45–16:45 · Clementi CBR', color: '#5C6BC0', link: 'may-2026.html#may-6' },
+      { day: 7,  mon: 'MAY', title: 'Aneesha Solo Ballet', time: '14:30–16:00 · AMK Studio', color: '#C47C6B', link: 'may-2026.html#may-7' },
+      { day: 8,  mon: 'MAY', title: 'Aneesha Solo Ballet', time: '15:00–17:00 · Clementi CBR', color: '#C47C6B', link: 'may-2026.html#may-8' },
+      { day: 10, mon: 'MAY', title: '🎭 Contemporary Group Showcase', time: '4:00PM–8:15PM · Kreta Ayer', color: '#C9A84C', link: 'may-2026.html#may-10' },
+      { day: 24, mon: 'MAY', title: '✈️ WBAC: Fly to Hong Kong (SQ874)', time: 'Departs 07:25', color: '#1C2B4A', link: 'may-2026.html#may-24' },
+      { day: 25, mon: 'MAY', title: '🏆 WBAC Hong Kong Competition', time: 'All day · Hong Kong', color: '#8B2635', link: 'may-2026.html#may-25' },
     ];
 
     today = new Date();
